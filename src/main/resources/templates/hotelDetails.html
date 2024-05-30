@@ -1,0 +1,246 @@
+<!doctype html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base :: parent(~{::#content}, ~{::title}, ~{::script})}">
+<head>
+
+<title>Hotel Detail Page</title>
+</head>
+
+<body>
+
+
+	<div id="content">
+
+		<!-- Hotel Detail Page -->
+		<div class="col-md-6 col-xl-4 mb-4">
+			<div class="card h-100">
+				<div class="card-body">
+					<div class="rounded-3 text-center mb-3 pt-2">
+
+						<div class="swiper" id="swiper-with-arrows">
+							<div class="swiper-wrapper" style="height: 340px;">
+								<div class="swiper-slide"
+									style="background-image: url(/images/TajHotel1.jpg)"></div>
+								<div class="swiper-slide"
+									style="background-image: url(/images/TajHotel2.jpg)"></div>
+								<div class="swiper-slide"
+									style="background-image: url(/images/TajHotel3.jpg)"></div>
+								<div class="swiper-slide"
+									style="background-image: url(/images/TajHotel4.jpg)"></div>
+								<div class="swiper-slide"
+									style="background-image: url(/images/TajHotel5.jpg)"></div>
+							</div>
+							<div class="swiper-button-next swiper-button-white custom-icon"></div>
+							<div class="swiper-button-prev swiper-button-white custom-icon"></div>
+						</div>
+
+					</div>
+					<h4 class="mb-2 pb-1" th:text="${selectedHotel.hotelName}">Hotel
+						Name</h4>
+					<p class="small" th:text="${selectedHotel.highlight}"></p>
+
+					<!-- ------------------------------------------------------------------------- -->
+					<div class="row mb-3 g-3">
+						<div class="col-6">
+							<div class="d-flex">
+								<h6>FACILITIES</h6>
+							</div>
+						</div>
+						<div class="col-6">
+							<div class="d-flex">
+								<ul class="p-0">
+									<!-- Iterate over each facility -->
+									<li th:each="facility : ${selectedHotel.hotelFacility}"
+										class="d-inline-block" style="margin-right: 5px;">
+										<!-- Square box with icon inside -->
+										<div class="border rounded p-1">
+											<i th:if="${facility == 'Free Wi-Fi'}" class="fas fa-wifi"></i>
+											<i th:if="${facility == 'Swimming Pool'}"
+												class="fas fa-swimming-pool"></i> <i
+												th:if="${facility == 'Gym'}" class="fas fa-dumbbell"></i> <i
+												th:if="${facility == 'Luggage Storage'}"
+												class="fas fa-suitcase"></i> <i
+												th:if="${facility == 'Room Service'}"
+												class="fas fa-concierge-bell"></i> <i
+												th:if="${facility == 'Bar'}"
+												class="fas fa-glass-martini-alt"></i> <i
+												th:if="${facility == 'Spa'}" class="fas fa-spa"></i> <i
+												th:if="${facility == 'Restaurant'}" class="fas fa-utensils"></i>
+											<i th:if="${facility == 'Parking'}" class="fas fa-parking"></i>
+											<i th:if="${facility == 'Car Rental'}" class="fas fa-car"></i>
+											<i th:if="${facility == 'Coffee'}" class="fas fa-coffee"></i>
+											<!-- Add more conditions for other facilities as needed -->
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+
+					<!-- Hotel Address -->
+					<div class="text-muted mb-2 d-flex flex-wrap">
+						<span style="margin-right: 5px;"><i
+							class="fa-solid fa-location-dot mt-1 mr-2 text-danger"></i></span> <span
+							th:text="${selectedHotel.hotelAddress}"></span> <a
+							href="javascript:void(0)" class="me-3" style="margin-left: 5px;"></a>
+						<span class="badge bg-label-success"
+							th:text="${selectedHotel.hotelCity}"> city</span>
+					</div>
+
+					<div class="row mb-3 g-3">
+						<div class="col-6">
+							<div class="d-flex">
+
+								<div>
+									<span style="font-weight: bold;">Price : </span> <span
+										class="text-primary">$</span> <span class="text-primary"
+										th:text="${selectedHotel.roomPrice}">/</span> <s
+										class="text-muted">$359</s>
+								</div>
+
+							</div>
+						</div>
+						<div class="col-6">
+							<div class="d-flex">
+
+								<!-- Rating -->
+								<h6
+									class="align-items-center justify-content-center gap-1 mb-1 mt-1"
+									style="padding-left: 40px;">
+									<span style="font-size: 1.125rem; vertical-align: middle;"
+										th:text="${selectedHotel.hotelRating}"></span> <span
+										class="text-warning"><i class="bx bxs-star me-1"></i></span>
+								</h6>
+
+							</div>
+						</div>
+					</div>
+
+
+					<div class="row mb-3 g-3">
+						<div class="col-6">
+							<div class="d-flex">
+								<div class="avatar flex-shrink-0 me-2">
+									<span class="avatar-initial rounded bg-label-primary"><i
+										class="bx bx-calendar-exclamation bx-sm"></i></span>
+								</div>
+								<div>
+									<h6 class="mb-0 text-nowrap" th:text="${hotelSearch.fromDate}"></h6>
+									<small>Check-In</small>
+								</div>
+
+							</div>
+						</div>
+						<div class="col-6">
+							<div class="d-flex">
+								<div class="avatar flex-shrink-0 me-2">
+									<span class="avatar-initial rounded bg-label-primary"><i
+										class="bx bx-calendar-exclamation bx-sm"></i></span>
+								</div>
+								<div>
+									<h6 class="mb-0 text-nowrap" th:text="${hotelSearch.toDate}"></h6>
+									<small>Check-Out</small>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- ------------------------------------------------------------------- -->
+					<div class="row mb-3 g-3">
+						<div class="col-6">
+							<div class="d-flex">
+								<div class="avatar flex-shrink-0 me-2">
+									<span class="avatar-initial rounded bg-label-primary"><i
+										class="bx bx-walk bx-sm"></i></span>
+								</div>
+								<div>
+									<h6 class="mb-0 text-nowrap"
+										th:text="${hotelSearch.selectedTraveler}"></h6>
+									<small>Guest</small>
+								</div>
+
+							</div>
+						</div>
+						<div class="col-6">
+							<div class="d-flex">
+								<div class="avatar flex-shrink-0 me-2">
+									<span class="avatar-initial rounded bg-label-primary"><i
+										class='bx bxs-bed bx-sm'></i></span>
+								</div>
+								<div>
+									<h6 class="mb-0 text-nowrap"
+										th:text="${hotelSearch.numberOfRooms}"></h6>
+									<small>room for <span
+										th:text="${hotelSearch.nightsStay}">[nightsStay]</span> Night
+									</small>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- ------------------------------------------------------------- -->
+
+					<!-- ------------------------------------------------------------- -->
+
+
+					<!-- Form for selecting room -->
+
+					<div class="col-12 text-center">
+						<form th:action="@{/itinerary}" method="post">
+							<button type="submit" class="btn btn-warning w-100 d-grid">BOOK
+								NOW</button>
+						</form>
+					</div>
+
+
+
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- Core JS -->
+	<!-- build:js assets/vendor/js/core.js -->
+
+	<script src="../../assets/vendor/libs/jquery/jquery.js"></script>
+	<script src="../../assets/vendor/libs/popper/popper.js"></script>
+	<script src="../../assets/vendor/js/bootstrap.js"></script>
+	<script
+		src="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+	<script src="../../assets/vendor/libs/select2/select2.js"></script>
+	<script src="../../assets/vendor/libs/bs-stepper/bs-stepper.js"></script>
+	<script src="../../assets/vendor/libs/rateyo/rateyo.js"></script>
+	<script src="../../assets/vendor/libs/hammer/hammer.js"></script>
+	<script src="../../assets/vendor/libs/i18n/i18n.js"></script>
+	<script src="../../assets/vendor/libs/typeahead-js/typeahead.js"></script>
+	<script src="../../assets/vendor/js/menu.js"></script>
+
+	<!-- endbuild -->
+
+	<!-- Vendors JS -->
+	<script src="../../assets/vendor/libs/cleavejs/cleave.js"></script>
+	<script src="../../assets/vendor/libs/cleavejs/cleave-phone.js"></script>
+	<script src="../../assets/vendor/libs/apex-charts/apexcharts.js"></script>
+	<script src="../../assets/vendor/libs/@form-validation/popular.js"></script>
+	<script src="../../assets/vendor/libs/@form-validation/bootstrap5.js"></script>
+	<script src="../../assets/vendor/libs/@form-validation/auto-focus.js"></script>
+	<script src="../../assets/vendor/libs/swiper/swiper.js"></script>
+
+	<!-- Main JS -->
+	<script src="../../assets/js/main.js"></script>
+	<script src="../../assets/js/front-main.js"></script>
+
+	<!-- Page JS -->
+	<script src="../../assets/js/cards-advance.js"></script>
+	<script src="../../assets/js/modal-add-new-cc.js"></script>
+	<script src="../../assets/js/ui-carousel.js"></script>
+	<script src="../../assets/js/modal-add-new-address.js"></script>
+	<script src="../../assets/js/wizard-ex-checkout.js"></script>
+</body>
+</html>

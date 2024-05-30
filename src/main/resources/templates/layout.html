@@ -1,0 +1,152 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<html
+  lang="en"
+  class="light-style layout-menu-fixed layout-compact"
+  dir="${direction}"
+  data-theme="theme-default"
+  data-assets-path="../../assets/"
+  data-template="horizontal-menu-template-starter">
+  <head th:replace="~{fragments/header :: header}">
+    
+  </head>
+
+  <body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu">
+      <div class="layout-container">
+        <!-- Navbar -->
+		<section id="section-navbar" th:replace="~{fragments/navbar :: section-navbar}">
+		</section>
+        <!-- / Navbar -->
+
+        <!-- Layout container -->
+        <div class="layout-page">
+          <!-- Content wrapper -->
+          <div class="content-wrapper">
+            <!-- Menu -->
+            <aside id="layout-menu" class="layout-menu-horizontal menu-horizontal menu bg-menu-theme flex-grow-0">
+              <div class="container-xxl d-flex h-100">
+                <ul class="menu-inner py-1">
+                  <!-- Page -->
+                  <li class="menu-item active">
+                    <a href="index.html" class="menu-link">
+                      <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                      <div data-i18n="Page 1">Page 1</div>
+                    </a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="page-2.html" class="menu-link">
+                      <i class="menu-icon tf-icons bx bx-detail"></i>
+                      <div data-i18n="Page 2">Page 2</div>
+                    </a>
+                  </li> 
+                </ul>
+              </div>
+            </aside>
+            <!-- / Menu -->
+
+            <!-- Content -->
+
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <h4 class="py-3 mb-4">Page 1</h4>
+              <p>
+                Sample page.<br />For more layout options use
+                <a href="https://tools.themeselection.com/generator/sneat/html" target="_blank" class="fw-medium"
+                  >HTML starter template generator</a
+                >
+                and refer
+                <a
+                  href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/documentation//layouts.html"
+                  target="_blank"
+                  class="fw-medium"
+                  >Layout docs</a
+                >.
+              </p>
+               <p th:text="'Current page is ' + ${page} + ' with direction ' + ${direction}"></p>
+              
+
+            </div>
+            <!--/ Content -->
+
+            <!-- Footer -->
+				<!-- Check if the device-specific footer fragment exists and use it, otherwise use the default footer -->
+			 <!-- Check if the device-specific footer fragment exists and use it, otherwise use the default footer -->
+			 ${deviceFooterExists}
+			 ${defaultFooterExists}www
+			    <div th:if="${deviceFooterExists}">
+			    	1	
+			        <footer class="content-footer footer bg-footer-theme" th:replace="~{fragments/footer-${deviceType} :: section-footer}"></footer>
+			    </div>
+			    <div th:unless="${deviceFooterExists}">
+			        <div th:if="${defaultFooterExists}">
+			        2
+			            <footer class="content-footer footer bg-footer-theme" th:replace="~{fragments/footer :: section-footer}"></footer>
+			        </div>
+			        <div th:unless="${defaultFooterExists}">
+			            <footer class="content-footer footer bg-footer-theme">
+			            	3
+			                <!-- Fallback footer content -->
+			                <p>Default Footer Content</p>
+			            </footer>
+			        </div>
+			    </div>       
+            
+            
+            </footer>
+            <!-- / Footer -->
+
+            <div class="content-backdrop fade"></div>
+          </div>
+          <!--/ Content wrapper -->
+        </div>
+
+        <!--/ Layout container -->
+      </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="layout-overlay layout-menu-toggle"></div>
+
+    <!-- Drag Target Area To SlideIn Menu On Small Screens -->
+    <div class="drag-target"></div>
+
+    <!--/ Layout wrapper -->
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+
+    <script src="../../assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="../../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../../assets/vendor/js/bootstrap.js"></script>
+    <script src="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="../../assets/vendor/libs/hammer/hammer.js"></script>
+
+    <script src="../../assets/vendor/js/menu.js"></script>
+
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+
+    <!-- Main JS -->
+    <script src="../../assets/js/main.js"></script>
+
+    <!-- Page JS -->
+    <script>
+			    document.addEventListener("DOMContentLoaded", function () {
+			    var languageLinks = document.querySelectorAll('.dropdown-language .dropdown-item');
+			    
+			    languageLinks.forEach(function (link) {
+			        link.addEventListener('click', function () {
+			            var url = this.getAttribute('data-url');
+			            if (url) {
+			                window.location.href = url;
+			            }
+			        });
+			    });
+			});
+    </script>
+    
+  </body>
+</html>

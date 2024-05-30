@@ -1,0 +1,134 @@
+<!doctype html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base :: parent(~{::#content}, ~{::title}, ~{::script})}">
+<head>
+<title>Hotel Search Page</title>
+</head>
+
+<body>
+
+
+	<div id="content">
+
+		<div class="row justify-content-center align-items-center">
+
+
+
+			<div class="col-md-6 col-xl-4 mb-4 mt-5">
+				<div class="card h-100">
+					<div
+						class="card-header d-flex align-items-center justify-content-between">
+						<h5 class="card-title m-0 me-2">Hotel Search</h5>
+					</div>
+					<div class="card-body">
+
+
+						<form th:action="@{/hotelList}" method="post">
+
+							<!-- search box ---------------------------------------->
+							<div class="col-12">
+								<div class="input-group input-group-merge">
+									<textarea class="form-control" id="destination"
+										name="destination" rows="2"
+										placeholder="Where do you want to go..."></textarea>
+								</div>
+								<div id="suggestions"></div>
+							</div>
+
+
+							<!-- Date -------------------------------------->
+
+							<div class="col-12">
+								<div class="row gy-3 text-nowrap">
+									<div class="col-6">
+										<div class="mb-3">
+											<label for="fromDate" class="form-label">From Date</label> <input
+												type="date" id="fromDate" name="fromDate"
+												th:value="${hotelSearch.fromDate}" class="form-control">
+										</div>
+									</div>
+									<div class="col-6">
+										<div class="mb-3">
+											<label for="toDate" class="form-label">To Date</label> <input
+												type="date" id="toDate" name="toDate" class="form-control"
+												th:value="${hotelSearch.toDate}">
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+							<!-- select Traveler -------------------------------------->
+
+							<div class="col-12">
+								<label class="form-label w-100" for="selectedTraveler">Selected
+									Traveler</label>
+								<div class="input-group input-group-merge">
+									<input type="number" min="0" id="selectedTraveler"
+										th:value="${hotelSearch.selectedTraveler}"
+										name="selectedTraveler" class="form-control">
+								</div>
+							</div>
+
+
+
+
+							<!--  button ----------------------------------------------->
+
+							<div class="col-12 text-center mt-2">
+								<button type="submit" id="hotelsearch"
+									class="btn btn-danger w-100 d-grid">Select</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+		</div>
+
+
+	</div>
+
+
+	<!-- Core JS -->
+	<!-- build:js assets/vendor/js/core.js -->
+
+	<script src="../../assets/vendor/libs/jquery/jquery.js"></script>
+	<script src="../../assets/vendor/libs/popper/popper.js"></script>
+	<script src="../../assets/vendor/js/bootstrap.js"></script>
+	<script
+		src="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+	<script src="../../assets/vendor/libs/hammer/hammer.js"></script>
+	<script src="../../assets/vendor/libs/i18n/i18n.js"></script>
+	<script src="../../assets/vendor/libs/typeahead-js/typeahead.js"></script>
+	<script src="../../assets/vendor/js/menu.js"></script>
+
+	<!-- endbuild -->
+
+	<!-- Vendors JS -->
+	<script src="../../assets/vendor/libs/cleavejs/cleave.js"></script>
+	<script src="../../assets/vendor/libs/cleavejs/cleave-phone.js"></script>
+	<script src="../../assets/vendor/libs/apex-charts/apexcharts.js"></script>
+	<script src="../../assets/vendor/libs/@form-validation/popular.js"></script>
+	<script src="../../assets/vendor/libs/@form-validation/bootstrap5.js"></script>
+	<script src="../../assets/vendor/libs/@form-validation/auto-focus.js"></script>
+
+	<!-- Main JS -->
+	<script src="../../assets/js/main.js"></script>
+
+	<!-- Page JS -->
+	<script src="../../assets/js/cards-advance.js"></script>
+	<script src="../../assets/js/modal-add-new-cc.js"></script>
+
+	<!-- custom script -->
+	<script type="text/javascript" th:src="@{/customJs/hotelSearch.js}"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base :: parent(~{::#content}, ~{::title}, ~{::script})}">
+<head>
+<title>Hotel List Page</title>
+</head>
+<body>
+
+
+	<div id="content">
+		<script src="../../assets/vendor/js/dropdown-hover.js"></script>
+		<script src="../../assets/vendor/js/mega-dropdown.js"></script>
+		<!-- Main Content -->
+		<div class="bs-stepper-content container mt-5">
+			<!-- Hotel List -->
+			<div class="row mb-3 g-3">
+				<div class="col-6">
+					<div class="d-flex">
+						<div class="avatar flex-shrink-0 me-2">
+							<span class="avatar-initial rounded bg-label-primary"> <i
+								class="bx bx-search bx-sm"></i></i></span>
+						</div>
+						<div>
+							<h6 class="mb-0 text-nowrap" th:text="${hotelSearch.destination}"></h6>
+							<small
+								th:text="${hotelSearch.fromDate} + ' | ' + ${hotelSearch.toDate}"></small>
+							<small th:text="' | Traveler ' + ${hotelSearch.selectedTraveler}"></small>
+
+
+						</div>
+					</div>
+				</div>
+				<div class="col-6">
+					<div class="d-flex justify-content-end me-2" id="search-modify">
+						<div class="avatar flex-shrink-0 me-2">
+							<span class="avatar-initial rounded bg-label-primary"><i
+								class="fas fa-edit bx-sm"></i> </span>
+						</div>
+						<div>
+							<h6 class="mb-0 text-nowrap">Modify</h6>
+							<small>Search</small>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+			<ul class="list-group mb-3">
+				<li class="list-group-item p-4" th:each="hotel : ${hotelList}">
+					<div class="d-flex gap-3">
+						<div class="flex-shrink-0 d-flex align-items-center">
+							<img src="/images/hotel.jpg" alt="google home" class="w-px-100" />
+						</div>
+						<div class="flex-grow-1">
+							<div class="row">
+								<div class="col-md-8">
+									<!-- Hotel Name -->
+									<p class="me-3">
+										<a href="javascript:void(0)" th:text="${hotel.hotelName}">Hotel
+											Name</a>
+									</p>
+									<!-- Hotel Address -->
+									<div class="text-muted mb-2 d-flex flex-wrap">
+										<span><i
+											class="fa-solid fa-location-dot mt-1 mr-2 text-danger"></i></span> <a
+											href="javascript:void(0)" class="me-3"
+											th:text="${hotel.hotelAddress}" style="margin-left: 5px;"></a>
+										<span class="badge bg-label-success"
+											th:text="${hotel.hotelCity}"></span>
+									</div>
+									<!-- Rating -->
+									<h6
+										class="align-items-center justify-content-center gap-1 mb-1 mt-1">
+										<span style="font-size: 1.125rem; vertical-align: middle;"
+											th:text="${hotel.hotelRating}"></span> <span
+											class="text-warning"><i class="bx bxs-star me-1"></i></span>
+									</h6>
+									<!-- Facilities -->
+									<div>
+										<h5>FACILITIES</h5>
+										<ul class="p-0">
+											<!-- Iterate over each facility -->
+											<li th:each="facility : ${hotel.hotelFacility}"
+												class="d-inline-block" style="margin-right: 5px;">
+												<!-- Square box with icon inside -->
+												<div class="border rounded p-1">
+													<i th:if="${facility == 'Free Wi-Fi'}" class="fas fa-wifi"></i>
+													<i th:if="${facility == 'Swimming Pool'}"
+														class="fas fa-swimming-pool"></i> <i
+														th:if="${facility == 'Gym'}" class="fas fa-dumbbell"></i>
+													<i th:if="${facility == 'Luggage Storage'}"
+														class="fas fa-suitcase"></i> <i
+														th:if="${facility == 'Room Service'}"
+														class="fas fa-concierge-bell"></i> <i
+														th:if="${facility == 'Bar'}"
+														class="fas fa-glass-martini-alt"></i> <i
+														th:if="${facility == 'Spa'}" class="fas fa-spa"></i> <i
+														th:if="${facility == 'Restaurant'}"
+														class="fas fa-utensils"></i> <i
+														th:if="${facility == 'Parking'}" class="fas fa-parking"></i>
+													<i th:if="${facility == 'Car Rental'}" class="fas fa-car"></i>
+													<i th:if="${facility == 'Coffee'}" class="fas fa-coffee"></i>
+													<!-- Add more conditions for other facilities as needed -->
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="text-md-end">
+										<div class="my-2 my-md-4 mb-md-5">
+											<span class="text-primary">$</span> <span
+												class="text-primary" th:text="${hotel.roomPrice}">/</span> <s
+												class="text-muted">$359</s>
+										</div>
+										<!-- Form for selecting room -->
+										<form
+											th:action="@{/hotelDetail/{hotelId}(hotelId=${hotel.hotelId})}"
+											method="post">
+											<button type="submit"
+												class="btn btn-sm btn-label-danger mt-md-3">SELECT
+												ROOM</button>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+
+	<!-- Core JS -->
+	<script src="../../assets/vendor/libs/popper/popper.js"></script>
+	<script src="../../assets/vendor/js/bootstrap.js"></script>
+	<!-- Vendors JS -->
+	<script src="../../assets/vendor/libs/jquery/jquery.js"></script>
+	<script src="../../assets/vendor/libs/select2/select2.js"></script>
+	<script src="../../assets/vendor/libs/bs-stepper/bs-stepper.js"></script>
+	<script src="../../assets/vendor/libs/rateyo/rateyo.js"></script>
+	<script src="../../assets/vendor/libs/cleavejs/cleave.js"></script>
+	<script src="../../assets/vendor/libs/cleavejs/cleave-phone.js"></script>
+	<script src="../../assets/vendor/libs/@form-validation/popular.js"></script>
+	<script src="../../assets/vendor/libs/@form-validation/bootstrap5.js"></script>
+	<script src="../../assets/vendor/libs/@form-validation/auto-focus.js"></script>
+	<!-- Main JS -->
+	<script src="../../assets/js/front-main.js"></script>
+	<!-- Page JS -->
+	<script src="../../assets/js/modal-add-new-address.js"></script>
+	<script src="../../assets/js/wizard-ex-checkout.js"></script>
+	<!-- Custom JS -->
+	<script type="text/javascript" th:src="@{/customJs/hotelDataList.js}"></script>
+
+
+</body>
+</html>

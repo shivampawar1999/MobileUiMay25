@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base :: parent(~{::#content}, ~{::title}, ~{::script})}">
+<head>
+
+<title>Hotel Itinerary Page</title>
+</head>
+
+<body>
+
+	<div id="content">
+
+		<script src="../../assets/vendor/js/dropdown-hover.js"></script>
+		<script src="../../assets/vendor/js/mega-dropdown.js"></script>
+
+
+
+
+		<!-- Cart right -->
+		<div class="col-xl-4">
+
+
+			<div class="row">
+				<div class="col-12">
+					<div class="itinerary-header">
+						<span class="itinerary-number">Your Itinerary</span>
+					</div>
+				</div>
+			</div>
+			<div class="border rounded p-4 mb-3 pb-3">
+
+
+				<img class="img-fluid"
+					src="../../assets/img/backgrounds/HotelImage1.jpg"
+					alt="Card image cap" />
+
+
+
+				<!-- Offer -->
+				<h5 class="card-title mt-3" th:text="${selectedHotel.hotelName}">Hotel
+					Name</h5>
+
+
+				<!-- Hotel Address -->
+				<div class="text-muted mb-2 d-flex flex-wrap mt-2">
+					<span><i
+						class="fa-solid fa-location-dot mt-1 mr-2 text-danger"></i></span> <a
+						href="javascript:void(0)" class="me-3" style="margin-left: 5px;"
+						th:text="${selectedHotel.hotelAddress}">Address 1 </a> <span
+						class="badge bg-label-success"
+						th:text="${selectedHotel.hotelCity}">City</span>
+				</div>
+
+				<!-- Rating -->
+				<h6 class="align-items-center justify-content-center gap-1 mb-1">
+					<span style="font-size: 1.125rem; vertical-align: middle;"
+						th:text="${selectedHotel.hotelRating}">0.0</span> <span
+						class="text-warning"><i class="bx bxs-star me-1"></i></span>
+				</h6>
+
+				<!-- Gift wrap -->
+				<div class="bg-lighter rounded p-3 mt-2">
+
+					<div class="row mb-3 g-3">
+						<div class="col-6">
+							<div class="d-flex">
+								<div class="avatar flex-shrink-0 me-2">
+									<span class="avatar-initial rounded bg-label-primary"> <i
+										class="bx bx-log-in bx-sm"></i>
+									</span>
+								</div>
+								<div>
+									<h6 class="mb-0 text-nowrap" th:text="${hotelSearch.fromDate}"></h6>
+									<small>12:00 PM : 11:00 AM</small> <small class="text-primary">Check-In</small>
+								</div>
+
+							</div>
+						</div>
+						<div class="col-6">
+							<div class="d-flex">
+								<div class="avatar flex-shrink-0 me-2">
+									<span class="avatar-initial rounded bg-label-primary"><i
+										class="bx bx-log-out bx-sm"></i></span>
+								</div>
+								<div>
+									<h6 class="mb-0 text-nowrap" th:text="${hotelSearch.toDate}"></h6>
+									<small>11:00 AM</small>
+									<p>
+										<small class="text-primary">Check-Out</small>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- ------------------------------------------------------------------- -->
+					<div class="row mb-3 g-3">
+						<div class="col-6">
+							<div class="d-flex">
+								<div class="avatar flex-shrink-0 me-2">
+									<span class="avatar-initial rounded bg-label-primary"><i
+										class="bx bx-walk bx-sm"></i></span>
+								</div>
+								<div>
+									<h6 class="mb-0 text-nowrap"
+										th:text="${hotelSearch.selectedTraveler}"></h6>
+									<small>Guest</small>
+								</div>
+
+							</div>
+						</div>
+						<div class="col-6">
+							<div class="d-flex">
+								<div class="avatar flex-shrink-0 me-2">
+									<span class="avatar-initial rounded bg-label-primary"><i
+										class='bx bxs-bed bx-sm'></i></span>
+								</div>
+								<div>
+									<h6 class="mb-0 text-nowrap"
+										th:text="${hotelSearch.numberOfRooms}"></h6>
+									<small>room for <span
+										th:text="${hotelSearch.nightsStay}">[nightsStay]</span> Night
+									</small>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+				<hr class="mx-n4" />
+
+				<!-- Price Details -->
+				<h6>Price Details</h6>
+				<dl class="row mb-0">
+					<dt class="col-6 fw-normal">Pay Amount</dt>
+
+					<dd class="col-6 text-end"
+						th:text="'$ '+${selectedHotel.roomPrice}">$1198.00</dd>
+
+					<dt class="col-sm-6 fw-normal">Coupon Discount</dt>
+					<dd class="col-sm-6 text-end">
+						<a href="javascript:void(0)">Apply Coupon</a>
+					</dd>
+
+					<dt class="col-6 fw-normal">All Applicable Taxes</dt>
+					<dd class="col-6 text-end"
+						th:text="'$ '+${selectedHotel.roomPrice}">$1198.00</dd>
+
+
+				</dl>
+
+				<hr class="mx-n4" />
+				<dl class="row mb-0">
+					<dt class="col-6">Grand Total</dt>
+					<dd class="col-6 fw-medium text-end mb-0"
+						th:text="'$ '+${selectedHotel.roomPrice}">$1198.00</dd>
+				</dl>
+			</div>
+			<div class="d-grid">
+				<button class="btn btn-warning btn-next">CONTINUE</button>
+			</div>
+		</div>
+
+
+	</div>
+
+
+	<!-- Core JS -->
+	<!-- build:js assets/vendor/js/core.js -->
+	<script src="../../assets/vendor/libs/popper/popper.js"></script>
+	<script src="../../assets/vendor/js/bootstrap.js"></script>
+
+	<!-- endbuild -->
+
+	<!-- Vendors JS -->
+	<script src="../../assets/vendor/libs/jquery/jquery.js"></script>
+	<script src="../../assets/vendor/libs/select2/select2.js"></script>
+	<script src="../../assets/vendor/libs/bs-stepper/bs-stepper.js"></script>
+	<script src="../../assets/vendor/libs/rateyo/rateyo.js"></script>
+	<script src="../../assets/vendor/libs/cleavejs/cleave.js"></script>
+	<script src="../../assets/vendor/libs/cleavejs/cleave-phone.js"></script>
+	<script src="../../assets/vendor/libs/@form-validation/popular.js"></script>
+	<script src="../../assets/vendor/libs/@form-validation/bootstrap5.js"></script>
+	<script src="../../assets/vendor/libs/@form-validation/auto-focus.js"></script>
+
+	<!-- Main JS -->
+	<script src="../../assets/js/front-main.js"></script>
+
+	<!-- Page JS -->
+
+	<script src="../../assets/js/modal-add-new-address.js"></script>
+	<script src="../../assets/js/wizard-ex-checkout.js"></script>
+
+
+
+</body>
+</html>
+
+
